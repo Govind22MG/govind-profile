@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Portfolio – Govind M Gaidhane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #684aea;
+      --accent: #ffe54c;
+      --background: linear-gradient(135deg,#493cbd 0%,#8f94fb 100%);
+      --panel: rgba(255,255,255,0.93);
+      --fade: rgba(255,255,255,0.15);
+      --card-radius: 14px;
+      --shadow: 0 4px 22px rgba(68,74,170,0.10);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+    html { scroll-behavior:smooth; }
+    body { background: var(--background); color:#28303a; }
+    nav {
+      position:fixed; top:0; left:0; width:100%; background:rgba(24,24,48,0.83);
+      backdrop-filter:blur(12px); display:flex; justify-content:space-between;
+      align-items:center; padding:0 7vw; z-index:100; color:#fff; height:65px;
+      box-shadow:0 1px 8px rgba(78,84,200,0.10);
+    }
+    nav h2 { font-size:1.45rem; letter-spacing:0.02em;}
+    nav ul { display:flex; gap:2.2em; list-style:none; }
+    nav a {
+      color:#fff; text-decoration:none; position:relative; padding:9px 0;
+      font-weight:500; font-size:1em; letter-spacing:0.01em;
+      transition:color .18s;
+    }
+    nav a::after {
+      content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px;
+      background:var(--accent); border-radius:2px;
+      transition:width .3s;
+    }
+    nav a:hover { color:var(--accent);}
+    nav a:hover::after { width:100%; }
+
+    section { padding:100px 7vw 0 7vw; max-width:1200px; margin:0 auto;}
+    h1,h2 { margin-bottom:24px; font-weight:600; color:#fff; }
+    h1 { font-size:2.75rem; }
+    h2 { font-size:2.15rem; text-align:center; }
+
+    .button {
+      display:inline-block; margin-top:32px; padding:12px 41px;
+      background:var(--accent); color:#222; border-radius:2em; font-weight:600;
+      text-decoration:none; font-size:1.06em; transition:background .22s;
+      box-shadow:0 2px 10px rgba(255,229,76,0.08);
+    }
+    .button:hover { background:#fde13c; color:#222;}
+
+    #intro {
+      display:flex; flex-wrap:wrap; align-items:center; gap:48px;
+      background:rgba(255,255,255,0.21); border-radius:var(--card-radius); padding:46px 7vw; margin-top:82px;
+      box-shadow: var(--shadow);
+    }
+    #intro img {
+      width:210px; height:210px; border-radius:50%; object-fit:cover;
+      border:5px solid #fff; box-shadow:0 2px 18px rgba(78,84,200,0.16);
+      background:#eee;
+    }
+    #intro .intro-text { flex:1; min-width:260px; }
+    #intro h1 span { color:var(--accent); }
+
+    #about { background:var(--fade); border-radius:var(--card-radius); margin-top:38px;}
+    #about .about-intro {
+      max-width:780px; margin:0 auto 26px;
+      color:#fff; font-size:1.07em; line-height:1.7; text-align:center;
+    }
+    .about-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+      gap:28px; margin-top:10px;
+    }
+    .about-card {
+      background:var(--panel); color:#322; border-radius:var(--card-radius);
+      padding:28px; box-shadow:var(--shadow); font-size:1.05em;
+      transition:box-shadow .19s;
+      border: 1px solid #ebebfc;
+    }
+    .about-card h3 { color:var(--primary); margin-bottom:13px; font-size:1.13em;}
+
+    #certificates { background:var(--fade); border-radius:var(--card-radius); margin-top:38px;}
+    .certificates-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:36px; margin-top:30px;
+    }
+    .certificate-card {
+      background:var(--panel); border-radius:var(--card-radius); overflow:hidden;
+      box-shadow:0 4px 15px rgba(78,84,200,0.10); display:block; color:#222;
+      text-decoration:none; transition: box-shadow .17s,transform .18s;
+      border: 1px solid #f3f2ff;
+      min-height:350px;
+      cursor:pointer;
+    }
+    .certificate-card:hover {
+      transform:translateY(-9px) scale(1.022);
+      box-shadow:0 10px 26px rgba(78,84,200,0.14);
+    }
+    .certificate-card img {
+      width:100%; height:180px; object-fit:cover; display:block; background:#eee;
+      border-bottom:1px solid #ece9fe;
+    }
+    .certificate-info {
+      padding:22px 15px 16px 15px; text-align:center;
+    }
+    .certificate-info h3 {
+      color:var(--primary); font-size:1.13rem; margin-bottom:8px; font-weight:600;
+    }
+    .certificate-info p {
+      font-size:0.99em; color:#43405d;
+    }
+
+    #skills { background:var(--fade); border-radius:var(--card-radius); margin-top:38px;}
+    .skills-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:30px; margin-top:30px; justify-content:center;
+    }
+    .skill-card {
+      background:var(--panel); color:#201a30; border-radius:var(--card-radius);
+      padding:22px 10px; text-align:center; box-shadow:0 4px 13px rgba(78,84,200,0.09);
+      border:1px solid #edeaff;
+      font-size:1.01em;
+    }
+    .skill-icon { font-size:2.45rem; margin-bottom:10px; color:var(--primary); }
+    .skill-card h3 { margin-bottom:5px; }
+    .skill-card p { font-weight:600; font-size:1.06em;}
+
+    #projects { background:var(--fade); border-radius:var(--card-radius); margin-top:38px;}
+    .projects-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(283px,1fr));
+      gap:30px; margin-top:30px;
+    }
+    .project-card {
+      background:var(--panel); color:#282e36; border-radius:var(--card-radius);
+      overflow:hidden; box-shadow:var(--shadow);
+      display:flex; flex-direction:column; position:relative;
+      border:1px solid #edeaff;
+      transition: box-shadow .21s,transform .17s;
+    }
+    .project-card:hover {
+      transform:translateY(-7px) scale(1.017);
+      box-shadow:0 8px 21px rgba(78,84,200,0.12);
+    }
+    .project-card img {
+      width:100%; height:150px; object-fit:cover;
+      display:block; background:#eee; border-bottom:1px solid #ece9fa;
+    }
+    .project-content { padding:22px 17px; flex:1; }
+    .project-content h3 { margin-bottom:10px; color:var(--primary); font-size:1.13em;}
+    .project-content p { flex:1; font-size:1em;}
+    .project-content a {
+      display:inline-block; margin-top:15px; color:var(--primary); font-weight:600;
+      text-decoration:none; font-size:1.04em;
+      transition:color .13s;
+    }
+    .project-content a:hover { color:#3628ab; text-decoration:underline;}
+
+    #contact { background:var(--fade); border-radius:var(--card-radius); margin-top:38px;}
+    .contact-container {
+      max-width:520px; margin:0 auto; padding:33px 8vw; text-align:center;
+    }
+    #contact h2 { margin-bottom:14px; color:#fff; }
+    .contact-card {
+      background:var(--panel); color:#322; border-radius:var(--card-radius);
+      padding:19px 9px; box-shadow:0 3px 14px rgba(78,84,200,0.09);
+      border:1px solid #ece9fa;
+      margin-top:12px;
+    }
+    .contact-item { margin-bottom:13px; }
+    .contact-label { font-weight:600; color:var(--primary); }
+    .contact-link { color:var(--primary); text-decoration:none; font-size:1em;}
+    .contact-link:hover { text-decoration:underline;}
+
+    footer {
+      text-align:center; padding:22px 5vw 6px 5vw; color:#fff; font-size:1.01em;
+      margin-top:40px;
+    }
+    @media(max-width:900px){
+      section { padding:81px 3vw 0 3vw; }
+      nav { padding:0 3vw;}
+      #intro { padding:28px 3vw;}
+    }
+    @media(max-width:768px){
+      section { padding:55px 1vw 0 1vw; }
+      #intro { flex-direction:column; gap:20px; padding:18px 1vw;}
+      #intro img { width:120px; height:120px; }
+      .certificates-grid { grid-template-columns:1fr; }
+      .projects-grid { grid-template-columns:1fr; }
+      .skills-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h2>Govind M Gaidhane</h2>
+    <ul>
+      <li><a href="#intro">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Intro -->
+  <section id="intro">
+    <img src="C:\Users\HP\Desktop\portfolio\data\aaa.jpg" alt="Govind Gaidhane" />
+    <div class="intro-text">
+      <h1>Hello, I’m <span>Govind Gaidhane</span></h1>
+      <p>Aspiring Data Scientist turning raw data into clear insights and predictive solutions with Python, machine learning, and interactive visualizations.</p>
+      <a href="#projects" class="button">See My Work</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p class="about-intro">
+      With a B.Tech in Computer Science and internship experience as a Data Analyst, I specialize in transforming data into actionable insights. I’m passionate about clean code, intuitive UI design, and continuous learning in web and data technologies.
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Education</h3>
+        <ul>
+          <li><strong>B.Tech – Computer Science</strong><br>G H Raisoni College (2021–2025)</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h3>Experience</h3>
+        <ul>
+          <li><strong>Full Stack Developer Intern</strong><br>Kaizen Software Pvt. Ltd (Dec 2024–Jun 2025)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <div class="certificates-grid">
+
+      <a class="certificate-card" href="C:\Users\HP\Desktop\portfolio\data\tata.jpg"target="_blank">
+        <img src="C:\Users\HP\Desktop\portfolio\data\tata.jpg" alt="Tata Virtual Internship Certificate" />
+        <div class="certificate-info">
+          <h3>Data Analytics Essentials</h3>
+          <p>Virtual Internship – Tata, focused on data visualization and analytics.</p>
+        </div>
+      </a>
+
+      <a class="certificate-card" href="C:\Users\HP\Desktop\portfolio\data\flipkart.pdf" target="_blank">
+        <img src="C:\Users\HP\Desktop\portfolio\data\flipkart.jpg" alt="Flipkart GRiD 6.0 Certificate" />
+        <div class="certificate-info">
+          <h3>Flipkart</h3>
+          <p>Certificate of Participation: Flipkart GRiD 6.0 – Software Development Track.</p>
+        </div>
+      </a>
+
+      <a class="certificate-card" href="assets/certificate-data-analytics-visualization.pdf" target="_blank">
+        <img src="assets/certificate-data-analytics-visualization.jpg" alt="Data Analytics & Visualization Certificate" />
+        <div class="certificate-info">
+          <h3>Data Analytics & Visualization</h3>
+          <p>Completed an online course on data analytics and business visualization.</p>
+        </div>
+      </a>
+
+      <a class="certificate-card" href="assets/certificate-python-development.pdf" target="_blank">
+        <img src="assets/certificate-python-development.jpg" alt="Python Development Certificate" />
+        <div class="certificate-info">
+          <h3>Python Development</h3>
+          <p>Completed an online course on Python development and applications.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <h3>C & C++</h3>
+        <p>95%</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <h3>SQL</h3>
+        <p>90%</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <h3>Python</h3>
+        <p>85%</p>
+      </div>
+	  <div class="skill-card">
+        <div class="skill-icon">🐘</div>
+        <h3>PHP</h3>
+        <p>85%</p>
+      </div>
+	  <div class="skill-card">
+  <div class="skill-icon">🎨</div> <!-- 🎨 represents web design, suitable for HTML/CSS -->
+  <h3>HTML &amp; CSS</h3>
+  <p>90%</p> <!-- Adjust proficiency as you see fit -->
+</div>
+
+	
+	 
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="C:\Users\HP\Desktop\portfolio\data\traffic.jpg"alt="Traffic Signs Recognition using CNN" />
+        <div class="project-content">
+          <h3>Traffic Signs Recognition using CNN</h3>
+          <p>Deep learning model for traffic sign recognition and smart road safety. Data preprocessing, CNN training, and model evaluation pipelines.</p>
+          <a href="https://github.com/Govind22MG/Road-Sign-Recognition-System" target="_blank">GitHub →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="C:\Users\HP\Desktop\portfolio\data\defect.jpg" alt="Product Defect Detection using CNN" />
+        <div class="project-content">
+          <h3>Product Defect Detection using CNN</h3>
+          <p>Computer vision model to identify manufacturing defects in products using image classification (Python, CNN).</p>
+          <a href="https://github.com/govind-gaidhane/product-defect-detection" target="_blank">GitHub →</a>
+        </div>
+      </div>
+	  <div class="project-card">
+        <img src="C:\Users\HP\Desktop\portfolio\data\portal.jpg" alt="Training and Placement Portal " />
+        <div class="project-content">
+          <h3>Training and Placement Portal</h3>
+          <p>A training and placement portal is a centralized web platform that connects students with job opportunities and employers with skilled candidates, streamlining internship and recruitment processes. (PHP,HTML,CSS).</p>
+          <a href="https://github.com/govind-gaidhane/product-defect-detection" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-container">
+      <h2>Get in Touch</h2>
+      <p>If you'd like to connect or collaborate, feel free to reach out!</p>
+      <div class="contact-card">
+        <div class="contact-item">
+          <span class="contact-label">Email:</span>
+          <a href="mailto:gmg222003@gmail.com" class="contact-link">gmg222003@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn:</span>
+          <a href="https://www.linkedin.com/in/govind-gaidhane-496bb0249/" class="contact-link" target="_blank">Govind-Gaidhane</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">GitHub:</span>
+          <a href="https://github.com/Govind22MG" class="contact-link" target="_blank">Govind-Gaidhane</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 Govind M Gaidhane • Built with ❤ in Bhandara, Maharashtra</footer>
+</body>
+</html>
